@@ -14,36 +14,34 @@
         <h1 class="m-7 flex items-center text-8xl font-extrabold dark:text-white"> <i class="p-10 fa fa-solid fa-utensils"></i> Dinna<span class="bg-blue-100 text-blue-800 text-4xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">TIME</span>
         </h1>
     </header>
-    <main class="grid grid-cols-2 gap-4">
-        <div class="grid grid-rows-2" >
-            <div class="ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-rows-1" >
+            <div class=" ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
                 <form class="mb-6 p-10">
                     <label for="default-input" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">What's in your pantry?</label>
-                    <input type="text" id="food-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingredient">
+                    <input type="text" id="food-input" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingredient">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="food-button">Get Recipe</button>
                 </form>
             </div>
-                <div class="ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
-                    <ul id="food-recipe-list"></ul>
-                </div>
-            
+            <div id="food-recipe-div" class="hidden">
+                <ul id="food-recipe-list"></ul>
             </div>
-           
-            </div>
+        </div>
+          
             
-            <div class="grid grid-rows-2">
-                <div class=" ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
-                    <form class="mb-6 p-10">
-                        <label for="default-input" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">What's in your liquor cabinet?</label>
-                        <input type="text" id="drink-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Spirit of Choice">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="drink-button">Get Recipe</button>
-                    </form>
-                </div>
-
+        <div class="grid grid-rows-1">
             <div class=" ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
+                <form class="mb-6 p-10">
+                    <label for="default-input" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">What's in your liquor cabinet?</label>
+                    <input type="text" id="drink-input" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Spirit of Choice">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="drink-button">Get Recipe</button>
+                </form>
+            </div>
+
+            <div id="drink-recipe-div" class="hidden">
                 <ul id="drink-recipe-list"></ul>
             </div>
-            </div>
+            
         </div>
     </main>
     
