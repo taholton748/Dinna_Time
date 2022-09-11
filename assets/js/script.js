@@ -22,6 +22,27 @@ var formSubmitHandler = function (event) {
     }
   };
 
+  var getIngredientRecipe = function (ingredients) { // request recipes based on ingredients function
+    var apiUrl = 'www.themealdb.com/api/json/v1/1/filter.php?i=' + ingredients; // API for fetching recipes based on ingredients
+  
+    fetch(apiUrl)
+      .then(function (response) {
+        if (response.ok) {
+          console.log(response);
+          response.json().then(function (ingredient) { // ingredients instead of data
+            console.log(ingredient); // ingredients
+            displayIngredients(ingredient); // just put ingredients here
+          });
+        } else {
+          alert('Error: ' + response.statusText);
+        }
+      })
+      .catch(function (error) {
+        alert('Unable to connect to MealDB');
+      });
+  };
+  
+
   
   
 // create a new list item for the unordered list
