@@ -1,11 +1,16 @@
+// ingredient variables
 var foodRecipe = document.querySelector('#food-recipe-list'); // unordered list for food recipes (parent of li child)
 var foodButton = document.querySelector('#food-button'); // food recipe submit button
 var foodForm = document.querySelector('#food-form'); // food input value
-var foodInput = document.querySelector('#food-input')
-var ingredientSearchTerm = document.querySelector('#ingredient-search-term');
+var foodInput = document.querySelector('#food-input'); // drink input value
+var ingredientSearchTerm = document.querySelector('#ingredient-search-term'); // recipe section header
+
+// drink variables
 var drinkRecipe = document.querySelector('#drink-recipe-list'); // unordered list for drink recipes (parent of li child)
 var drinkButton = document.querySelector('#drink-button'); // drink recipe submit button
+var foodForm = document.querySelector('#drink-form'); // drink input value
 var drinkInput = document.querySelector('#drink-input'); // drink input value
+var drinkSearchTerm = document.querySelector('#drink-search-term'); // drink section header
 
 // form submission for recipes based on input ingredient
 var formSubmitHandler = function (event) {
@@ -63,12 +68,6 @@ var formSubmitHandler = function (event) {
  
   
   foodForm.addEventListener('submit', formSubmitHandler); // event listener for submit button
-  
-  
-// create a new list item for the unordered list
-// content of the new list item (comes from input value)
-// appending the part of the html that will be updated (include classes to match html - establish separately in css)
-// add food ingredient input to local storage and create persistent html (e.g. buttons)
 
 
 // inside fetch API function
