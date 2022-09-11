@@ -42,7 +42,8 @@ var formSubmitHandler = function (event) {
       });
   };
   
-
+  
+  foodForm.addEventListener('submit', formSubmitHandler); // event listener for submit button
   
   
 // create a new list item for the unordered list
