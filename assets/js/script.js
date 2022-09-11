@@ -2,6 +2,7 @@ var foodRecipe = document.querySelector('#food-recipe-list'); // unordered list 
 var foodButton = document.querySelector('#food-button'); // food recipe submit button
 var foodForm = document.querySelector('#food-form'); // food input value
 var foodInput = document.querySelector('#food-input')
+var ingredientSearchTerm = document.querySelector('#ingredient-search-term');
 var drinkRecipe = document.querySelector('#drink-recipe-list'); // unordered list for drink recipes (parent of li child)
 var drinkButton = document.querySelector('#drink-button'); // drink recipe submit button
 var drinkInput = document.querySelector('#drink-input'); // drink input value
@@ -42,7 +43,23 @@ var formSubmitHandler = function (event) {
       });
   };
   
+  var displayRecipes = function (meals, searchTerm) { // ingredients display function
+    if (meals.length === 0) { // confirming recipes exist based on ingredient input
+      foodRecipe.textContent = 'No recipes found.'; // if no recipes, add display that there aren't any
+      return;
+    }
+     ingredientSearchTerm.textContent = searchTerm;
 
+     for (var i = 0; i < meals.length; i++) {
+      var mealName = meals[i].meals.strMeal; // pulling recipe names from API through meals then selecting meal name
+       var recipesEl = document.createElement('li'); // create list element for recipe names
+      recipesEl.classList = 'list-item flex-row justify-space-between align-center'; // add classes to list element --> I randomly threw this in here
+      recipesEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route
+       var titleEl = document.createElement('span');
+      titleEl.textContent = recipeName; // ingredient name goes here
+       recipesEl.appendChild(titleEl); // append div or UL that the list element is going in
+     }
+  };
  
   
   foodForm.addEventListener('submit', formSubmitHandler); // event listener for submit button
