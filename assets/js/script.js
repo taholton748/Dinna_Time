@@ -16,7 +16,7 @@ var formSubmitHandler = function (event) {
     if (ingredient) {
       getIngredientRecipe(ingredient);
   
-      foodRecipe.textContent = ''; // where the ingredients list goes
+      // foodRecipe.textContent = ''; // where the ingredients list goes
       foodInput.value = '';
     } else {
       alert('Please enter an ingredient');
