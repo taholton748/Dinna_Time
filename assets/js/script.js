@@ -13,7 +13,7 @@ var formSubmitHandler = function (event) {
     var ingredient = foodInput.value.trim(); // id of input element for submit form
   
     if (ingredient) {
-      getUserRepos(ingredient);
+      getIngredientRecipe(ingredient);
   
       foodRecipe.textContent = ''; // where the ingredients list goes
       foodInput.value = '';
@@ -29,9 +29,9 @@ var formSubmitHandler = function (event) {
       .then(function (response) {
         if (response.ok) {
           console.log(response);
-          response.json().then(function (ingredient) { // ingredients instead of data
-            console.log(ingredient); // ingredients
-            displayIngredients(ingredient); // just put ingredients here
+          response.json().then(function (recipe) { // convert recipe response to json and function to console log them and display
+            console.log(recipe); // console log recipes
+            displayRecipes(recipe); // function to display
           });
         } else {
           alert('Error: ' + response.statusText);
@@ -42,6 +42,8 @@ var formSubmitHandler = function (event) {
       });
   };
   
+
+ 
   
   foodForm.addEventListener('submit', formSubmitHandler); // event listener for submit button
   
