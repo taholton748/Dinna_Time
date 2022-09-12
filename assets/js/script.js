@@ -5,7 +5,7 @@ var foodInput = document.querySelector('#food-input'); // food form
 var recipeContainer = document.querySelector('#recipe-container'); // container for recipe list
 var ingredientSearchTerm = document.querySelector('#ingredient-search-term'); // recipe section header
 
-// drink variables
+// drink variables - need to be updated once recipes is confirmed and working
 var drinkRecipe = document.querySelector('#drink-recipe-list'); // unordered list for drink recipes (parent of li child)
 var drinkButton = document.querySelector('#drink-button'); // drink recipe submit button
 var foodForm = document.querySelector('#drink-form'); // drink input value
@@ -30,7 +30,7 @@ var formSubmitHandler = function (event) {
 
   // fetching the recipes from API
   var getIngredientRecipe = function (ingredients) { // request recipes based on ingredients function
-    var apiUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + ingredientsss; // API for fetching recipes based on ingredients
+    var apiUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + ingredients; // API for fetching recipes based on ingredients
   
     fetch(apiUrl)
       .then(function (response) {
