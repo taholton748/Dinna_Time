@@ -28,6 +28,7 @@ var formSubmitHandler = function (event) {
     }
   };
 
+  // fetching the recipes from API
   var getIngredientRecipe = function (ingredients) { // request recipes based on ingredients function
     var apiUrl = 'www.themealdb.com/api/json/v1/1/filter.php?i=' + ingredients; // API for fetching recipes based on ingredients
   
@@ -48,25 +49,22 @@ var formSubmitHandler = function (event) {
       });
   };
   
-  var displayRecipes = function (meals, searchTerm) { // ingredients display function
+  // displaying the recipes from the API
+  var displayRecipes = function (meals) { // ingredients display function
     if (meals.length === 0) { // confirming recipes exist based on ingredient input
       foodRecipe.textContent = 'No recipes found.'; // if no recipes, add display that there aren't any
       return;
     }
-     ingredientSearchTerm.textContent = searchTerm;
 
      for (var i = 0; i < meals.length; i++) {
       var mealName = meals[i].meals.strMeal; // pulling recipe names from API through meals then selecting meal name
        var recipesEl = document.createElement('li'); // create list element for recipe names
       recipesEl.classList = ''; // add classes to list element --> I randomly threw this in here, must be determined
       recipesEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route --> delete if not neededs
-       var titleEl = document.createElement('span');
-      titleEl.textContent = recipeName; // ingredient name goes here
-       recipesEl.appendChild(titleEl); // append div or UL that the list element is going in
      }
   };
  
-  
+  // recipes sevent listeners
   foodForm.addEventListener('submit', formSubmitHandler); // event listener for submit button
 
 
