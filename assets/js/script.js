@@ -2,13 +2,13 @@
 var foodButton = document.querySelector('#food-button'); // food recipe submit button
 var foodForm = document.querySelector('#food-form'); // food input value
 var foodInput = document.querySelector('#food-input'); // food form
-var recipeContainer = document.querySelector('#recipe-container'); // container for recipe list
+var recipeContainer = document.querySelector('#recipe-containers'); // container for recipe list
 var ingredientSearchTerm = document.querySelector('#ingredient-search-term'); // recipe section header
 
 // drink variables - need to be updated once recipes is confirmed and working
 var drinkRecipe = document.querySelector('#drink-recipe-list'); // unordered list for drink recipes (parent of li child)
 var drinkButton = document.querySelector('#drink-button'); // drink recipe submit button
-var foodForm = document.querySelector('#drink-form'); // drink input value
+var drinkForm = document.querySelector('#drink-form'); // drink input value
 var drinkInput = document.querySelector('#drink-input'); // drink input value
 var drinkSearchTerm = document.querySelector('#drink-search-term'); // drink section header
 
@@ -36,16 +36,16 @@ var formSubmitHandler = function (event) {
       .then(function (response) {
         if (response.ok) {
           console.log(response);
-          response.json().then(function (recipe) { // convert recipe response to json and function to console log them and display
-            console.log(recipe); // console log recipes
-            displayRecipes(recipe); // function to display
-          });
+          return response.json()
         } else {
           alert('Error: ' + response.statusText);
         }
+      }).then(function(recipe) { // convert recipe response to json and function to console log them and display
+        console.log('recipe', recipe); // console log recipes
+        displayRecipes(recipe.meals); // function to display
       })
       .catch(function (error) {
-        alert('Unable to connect to MealDB');
+        console.log(error);
       });
   };
   
@@ -55,16 +55,16 @@ var formSubmitHandler = function (event) {
       foodRecipe.textContent = 'No recipes found.'; // if no recipes, add display that there aren't any
       return;
     }
+    
+    for (var i = 0; i < meals.length; i++) {
+        var mealName = meals[i].strMeal; // pulling recipe names from API through meals then selecting meal name (maybe remove .meals?)
+        var recipesEl = document.createElement('li'); // create list element for recipe names
+        recipesEl.textContent = mealName; // adding text content for list element (meal options)
+        recipesEl.classList = ''; // add classes to list element --> I randomly threw this in here, must be determined
+        //recipesEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route --> delete if not neededs
+        recipeContainer.appendChild(recipesEl);
+    }
 
-     for (var i = 0; i < meals.length; i++) {
-      var mealName = meals[i].meals.strMeal; // pulling recipe names from API through meals then selecting meal name
-       var recipesEl = document.createElement('li'); // create list element for recipe names
-       recipesEl.textContent = mealName; // adding text content for list element (meal options)
-      recipesEl.classList = ''; // add classes to list element --> I randomly threw this in here, must be determined
-      //recipesEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route --> delete if not neededs
-     }
-
-     recipeContainer.appendChild(recipesEl);
   };
  
   // recipes sevent listeners
