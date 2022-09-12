@@ -1,8 +1,8 @@
 // ingredient variables
-var foodRecipe = document.querySelector('#food-recipe-list'); // unordered list for food recipes (parent of li child)
 var foodButton = document.querySelector('#food-button'); // food recipe submit button
 var foodForm = document.querySelector('#food-form'); // food input value
-var foodInput = document.querySelector('#food-input'); // drink input value
+var foodInput = document.querySelector('#food-input'); // food form
+var recipeContainer = document.querySelector('#recipe-container'); // container for recipe list
 var ingredientSearchTerm = document.querySelector('#ingredient-search-term'); // recipe section header
 
 // drink variables
@@ -21,7 +21,7 @@ var formSubmitHandler = function (event) {
     if (ingredient) {
       getIngredientRecipe(ingredient);
   
-      // foodRecipe.textContent = ''; // where the ingredients list goes
+      recipeContainer.textContent = ''; // where the ingredients list goes
       foodInput.value = '';
     } else {
       alert('Please enter an ingredient');
@@ -30,7 +30,7 @@ var formSubmitHandler = function (event) {
 
   // fetching the recipes from API
   var getIngredientRecipe = function (ingredients) { // request recipes based on ingredients function
-    var apiUrl = 'www.themealdb.com/api/json/v1/1/filter.php?i=' + ingredients; // API for fetching recipes based on ingredients
+    var apiUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + ingredientsss; // API for fetching recipes based on ingredients
   
     fetch(apiUrl)
       .then(function (response) {
@@ -60,8 +60,10 @@ var formSubmitHandler = function (event) {
       var mealName = meals[i].meals.strMeal; // pulling recipe names from API through meals then selecting meal name
        var recipesEl = document.createElement('li'); // create list element for recipe names
       recipesEl.classList = ''; // add classes to list element --> I randomly threw this in here, must be determined
-      recipesEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route --> delete if not neededs
+      //recipesEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route --> delete if not neededs
      }
+
+     recipeContainer.appendChild(recipesEl);
   };
  
   // recipes sevent listeners
