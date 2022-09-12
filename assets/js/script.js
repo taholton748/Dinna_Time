@@ -59,6 +59,7 @@ var formSubmitHandler = function (event) {
      for (var i = 0; i < meals.length; i++) {
       var mealName = meals[i].meals.strMeal; // pulling recipe names from API through meals then selecting meal name
        var recipesEl = document.createElement('li'); // create list element for recipe names
+       recipesEl.textContent = mealName; // adding text content for list element (meal options)
       recipesEl.classList = ''; // add classes to list element --> I randomly threw this in here, must be determined
       //recipesEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route --> delete if not neededs
      }
