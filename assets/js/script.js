@@ -37,7 +37,7 @@ var formSubmitHandler = function (event) {
           console.log(response);
           return response.json()
         } else {
-          alert('Error: ' + response.statusText);
+          recipeContainer.textContent = 'Error:' + response.statusText; // notification presents if bad connection to the MealDB
         }
       }).then(function(recipe) { // convert recipe response to json and function to console log them and display
         console.log('recipe', recipe); // console log recipes
@@ -99,7 +99,7 @@ var formSubmitHandlerDrink = function (event) {
           // set to local storage
           return response.json()
         } else {
-          alert('Error: ' + response.statusText);
+          recipeContainer.textContent = 'Error:' + response.statusText; // notification presents if bad connection to the CocktailDB
         }
       }).then(function(drink) { // convert recipe response to json and function to console log them and display
         console.log('drink', drink); // console log recipes
