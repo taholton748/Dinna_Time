@@ -6,7 +6,7 @@ var ingredientSearchTerm = document.querySelector('#ingredient-search-term'); //
 
 // drink variables - need to be updated once recipes is confirmed and working
 var drinkForm = document.querySelector('#drink-form'); // drink input value
-var drinkInput = document.querySelector('#drink-input'); // drink input value
+var drinkInput = document.querySelector('#drink-input'); // drink form
 var drinkContainer = document.querySelector('#drink-containers'); // container for drink list
 var drinkSearchTerm = document.querySelector('#drink-search-term'); // drink section header
 
@@ -29,7 +29,7 @@ var formSubmitHandler = function (event) {
   // fetching the recipes from API
   var getIngredientRecipe = function (ingredients) { // request recipes based on ingredients function
     var apiUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=' + ingredients; // API for fetching recipes based on ingredients
-  
+    
     fetch(apiUrl)
       .then(function (response) {
         if (response.ok) {
@@ -50,14 +50,12 @@ var formSubmitHandler = function (event) {
   
   // displaying the recipes from the API
   var displayRecipes = function (meals) { // ingredients display function
-    console.log('hello');
-    console.log(meals);
     if (!meals) { // confirming recipes exist based on ingredient input
       recipeContainer.textContent = 'No recipes found.'; // if no recipes, add display that there aren't any
       return;
     }
     
-    for (var i = 0; i < meals.length; i++) {
+    for (var i = 0; i < 5; i++) {
         var mealName = meals[i].strMeal; // pulling recipe names from API through meals then selecting meal name (maybe remove .meals?)
         var recipesEl = document.createElement('li'); // create list element for recipe names
         recipesEl.textContent = mealName; // adding text content for list element (meal options)
@@ -113,7 +111,7 @@ var formSubmitHandlerDrink = function (event) {
   
   // displaying the recipes from the API
   var displayDrinks = function (drinks) { // ingredients display function
-    for (var i = 0; i < drinks.length; i++) {
+    for (var i = 0; i < 5; i++) {
         var liquorName = drinks[i].strDrink; // pulling recipe names from API through meals then selecting meal name (maybe remove .meals?)
         var liquorsEl = document.createElement('li'); // create list element for recipe names
         liquorsEl.textContent = liquorName; // adding text content for list element (meal options)
