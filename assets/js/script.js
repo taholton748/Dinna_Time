@@ -1,15 +1,13 @@
 // ingredient variables
-var foodButton = document.querySelector('#food-button'); // food recipe submit button
 var foodForm = document.querySelector('#food-form'); // food input value
 var foodInput = document.querySelector('#food-input'); // food form
 var recipeContainer = document.querySelector('#recipe-containers'); // container for recipe list
 var ingredientSearchTerm = document.querySelector('#ingredient-search-term'); // recipe section header
 
 // drink variables - need to be updated once recipes is confirmed and working
-var drinkRecipe = document.querySelector('#drink-recipe-list'); // unordered list for drink recipes (parent of li child)
-var drinkButton = document.querySelector('#drink-button'); // drink recipe submit button
 var drinkForm = document.querySelector('#drink-form'); // drink input value
 var drinkInput = document.querySelector('#drink-input'); // drink input value
+var drinkContainer = document.querySelector('#drink-containers'); // container for drink list
 var drinkSearchTerm = document.querySelector('#drink-search-term'); // drink section header
 
 // form submission for recipes based on input ingredient
@@ -24,7 +22,7 @@ var formSubmitHandler = function (event) {
       recipeContainer.textContent = ''; // where the ingredients list goes
       foodInput.value = '';
     } else {
-      alert('Please enter an ingredient');
+      alert('Please enter an ingredient'); // remove alert and make modal
     }
   };
 
@@ -36,6 +34,7 @@ var formSubmitHandler = function (event) {
       .then(function (response) {
         if (response.ok) {
           console.log(response);
+          // set to local storage
           return response.json()
         } else {
           alert('Error: ' + response.statusText);
@@ -51,8 +50,10 @@ var formSubmitHandler = function (event) {
   
   // displaying the recipes from the API
   var displayRecipes = function (meals) { // ingredients display function
-    if (meals.length === 0) { // confirming recipes exist based on ingredient input
-      foodRecipe.textContent = 'No recipes found.'; // if no recipes, add display that there aren't any
+    console.log('hello');
+    console.log(meals);
+    if (!meals) { // confirming recipes exist based on ingredient input
+      recipeContainer.textContent = 'No recipes found.'; // if no recipes, add display that there aren't any
       return;
     }
     
@@ -70,11 +71,58 @@ var formSubmitHandler = function (event) {
   // recipes sevent listeners
   foodForm.addEventListener('submit', formSubmitHandler); // event listener for submit button
 
+// ------------------------------------------------------------------------------------------------------------------------------------------------ //
 
-// inside fetch API function
-var drinkRequestUrl = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka'; // =vodka will be replaced with '= + meal' from search
+// form submission for recipes based on input ingredient
+var formSubmitHandlerDrink = function (event) {
+    event.preventDefault();
+  
+    var drinkBase = drinkInput.value.trim(); // id of input element for submit form
+  
+    if (drinkBase) {
+      getDrinkAbv(drinkBase);
+  
+      drinkContainer.textContent = ''; // where the ingredients list goes
+      drinkInput.value = '';
+    } else {
+      alert('Please enter a drink base'); // remove alert and make modal
+    }
+  };
 
-// create a new list item for the unordered list
-// content of the new list item
-// appending the part of the html that will be updated (include classes to match html - establish separately in css)
-// add drink ingredient input to local storage and create persistent html (e.g. buttons)
+  // fetching the recipes from API
+  var getDrinkAbv = function (drinks) { // request recipes based on ingredients function
+    var apiUrlDrink = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + drinks; // API for fetching recipes based on ingredients
+  
+    fetch(apiUrlDrink)
+      .then(function (response) {
+        if (response.ok) {
+          console.log(response);
+          // set to local storage
+          return response.json()
+        } else {
+          alert('Error: ' + response.statusText);
+        }
+      }).then(function(drink) { // convert recipe response to json and function to console log them and display
+        console.log('drink', drink); // console log recipes
+        displayDrinks(drink.drinks); // function to display
+      })
+      .catch(function (error) {
+        drinkContainer.textContent = 'No drinks found.'; // change this to match above
+      });
+  };
+  
+  // displaying the recipes from the API
+  var displayDrinks = function (drinks) { // ingredients display function
+    for (var i = 0; i < drinks.length; i++) {
+        var liquorName = drinks[i].strDrink; // pulling recipe names from API through meals then selecting meal name (maybe remove .meals?)
+        var liquorsEl = document.createElement('li'); // create list element for recipe names
+        liquorsEl.textContent = liquorName; // adding text content for list element (meal options)
+        liquorsEl.classList = ''; // add classes to list element --> I randomly threw this in here, must be determined
+        //liquorsEl.setAttribute('href', '' + mealName); // added the option to include links if we wanted to go that route --> delete if not neededs
+        drinkContainer.appendChild(liquorsEl);
+    }
+
+  };
+ 
+  // recipes sevent listeners
+  drinkForm.addEventListener('submit', formSubmitHandlerDrink); // event listener for submit button
