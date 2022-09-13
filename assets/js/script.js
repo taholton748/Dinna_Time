@@ -13,6 +13,7 @@ var drinkSearchTerm = document.querySelector('#drink-search-term'); // drink sec
 // form submission for recipes based on input ingredient
 var formSubmitHandler = function (event) {
     event.preventDefault();
+    localStorage.setItem("food input", JSON.stringify(foodInput.value));
   
     var ingredient = foodInput.value.trim(); // id of input element for submit form
   
@@ -22,7 +23,7 @@ var formSubmitHandler = function (event) {
       recipeContainer.textContent = ''; // where the ingredients list goes
       foodInput.value = '';
     } else {
-      alert('Please enter an ingredient'); // remove alert and make modal
+      recipeContainer.textContent = 'Enter a protein to see recipes.'; // notification presents if no protein is entered
     }
   };
 
@@ -34,7 +35,6 @@ var formSubmitHandler = function (event) {
       .then(function (response) {
         if (response.ok) {
           console.log(response);
-          // set to local storage
           return response.json()
         } else {
           alert('Error: ' + response.statusText);
@@ -74,6 +74,7 @@ var formSubmitHandler = function (event) {
 // form submission for recipes based on input ingredient
 var formSubmitHandlerDrink = function (event) {
     event.preventDefault();
+    localStorage.setItem("drink input", JSON.stringify(drinkInput.value));
   
     var drinkBase = drinkInput.value.trim(); // id of input element for submit form
   
@@ -83,7 +84,7 @@ var formSubmitHandlerDrink = function (event) {
       drinkContainer.textContent = ''; // where the ingredients list goes
       drinkInput.value = '';
     } else {
-      alert('Please enter a drink base'); // remove alert and make modal
+      drinkContainer.textContent = 'Enter a base liquor for your drink.'; // notification presents if no liquor is entered
     }
   };
 
