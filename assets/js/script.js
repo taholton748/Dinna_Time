@@ -89,7 +89,7 @@ function displayRecentFood(arr, type = "food") {
     buttonEl.onclick = function () {
       // TODO: Make API Request for the search
       // Demo
-      alert("Yayyy");
+      //   alert("Yayyy");
     };
 
     // Base on the type from the parameter
