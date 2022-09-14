@@ -1,55 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Dinna Time</title>
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Dinna'Time</title>
+  </head>
+  <body>
     <header>
-        <h1 class="m-7 flex items-center text-8xl font-extrabold dark:text-white"> <i class="p-10 fa fa-solid fa-utensils"></i> Dinna<span class="bg-blue-100 text-blue-800 text-4xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">TIME</span>
-        </h1>
+      <h1 class="m-7 flex items-center text-8xl font-extrabold dark:text-white">
+        <i class="p-10 fa fa-solid fa-utensils"></i> Dinna'<span
+          class="bg-blue-100 text-blue-800 text-4xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2"
+          >TIME</span
+        >
+      </h1>
     </header>
     <main class="grid grid-cols-2 gap-4">
-        <div class="grid grid-rows-2" >
-            <div class="ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
-                <form class="mb-6 p-10">
-                    <label for="default-input" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">What's in your pantry?</label>
-                    <input type="text" id="food-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingredient">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="food-button">Get Recipe</button>
-                </form>
-            </div>
-                <div class="ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
-                    <ul id="food-recipe-list"></ul>
-                </div>
-            
-            </div>
-           
-            </div>
-            
-            <div class="grid grid-rows-2">
-                <div class=" ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
-                    <form class="mb-6 p-10">
-                        <label for="default-input" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">What's in your liquor cabinet?</label>
-                        <input type="text" id="drink-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Spirit of Choice">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="drink-button">Get Recipe</button>
-                    </form>
-                </div>
-
-            <div class=" ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6">
-                <ul id="drink-recipe-list"></ul>
-            </div>
-            </div>
+      <div class="grid grid-rows-2">
+        <div
+          class="mt-6 ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6"
+        >
+          <form class="mb-6 p-10" id="food-form">
+            <label
+              for="default-input"
+              class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300"
+              >What's in your pantry?</label
+            >
+            <input
+              type="text"
+              id="food-input"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Ingredient"
+            />
+            <button
+              type="submit"
+              class="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              id="food-button"
+            >
+              Get Recipe
+            </button>
+          </form>
+          <h2>Ingredient Search History:</h2>
+          <div class="recent-food"></div>
         </div>
+
+        <div class="invisible mt-5 col-12 col-md-8">
+          <!--Recipe options - need to add class here-->
+          <h2 class="subtitle">
+            Recipe Options: <span id="ingredient-search-term"></span>
+          </h2>
+          <div
+            class="ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6"
+          >
+            <ul id="recipe-containers"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-rows-2">
+        <div
+          class="mt-6 ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6"
+        >
+          <form class="mb-6 p-10" id="drink-form">
+            <label
+              for="default-input"
+              class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300"
+              >What's in your liquor cabinet?</label
+            >
+            <input
+              type="text"
+              id="drink-input"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Spirit of Choice"
+            />
+            <button
+              type="submit"
+              class="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              id="drink-button"
+            >
+              Get Recipe
+            </button>
+          </form>
+          <h2>Drink Search History:</h2>
+          <div class="recent-drink"></div>
+        </div>
+
+        <div class="invisible mt-5 col-12 col-md-8">
+          <!--Recipe options - need to add class here-->
+          <h2 class="subtitle">
+            Drink Options: <span id="drink-search-term"></span>
+          </h2>
+          <div
+            class="ml-10 mr-10 border border-black bg-gray-200 rounded-xl p-6"
+            id="drink-recipe-list"
+          >
+            <ul id="drink-containers"></ul>
+          </div>
+        </div>
+      </div>
     </main>
-    
 
-
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="./assets/js/script.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
