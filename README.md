@@ -21,8 +21,7 @@ The design of this application is aimed at the ease of the user experience, quic
 https://taholton748.github.io/Dinna_Time/
 
 <hr>
-![image]()
-
+![FireShot Capture 003 - Dinna'Time - ](https://user-images.githubusercontent.com/45399255/190286432-f2b7b479-a363-4422-879c-f862992e4262.png)
 ## Built With
 
 - HTML
